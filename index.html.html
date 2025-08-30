@@ -1,0 +1,427 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homelight Jewelry</title>
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- 配置Tailwind自定义颜色和字体 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#D4AF37', // 暖金色作为主色调
+                        secondary: '#F5F5DC', // 米白色作为辅助色
+                        accent: '#A0522D', // 淡棕色作为强调色
+                        neutral: '#F9F5F1', // 浅米色作为背景
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .btn-hover {
+                @apply transition-all duration-300 hover:scale-105 hover:shadow-lg;
+            }
+            .text-shadow {
+                text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            }
+        }
+    </style>
+    
+    <style>
+        /* 导入Inter字体 */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        /* 按钮动画效果 */
+        .social-btn {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+        
+        .social-btn:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* 语言选择器样式 */
+        .language-selector {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .language-selector select {
+            appearance: none;
+            background-color: transparent;
+            border: 1px solid #D4AF37;
+            color: #A0522D;
+            padding: 6px 30px 6px 12px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .language-selector select:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+        
+        .language-selector::after {
+            content: "\f078";
+            font-family: "FontAwesome";
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #D4AF37;
+        }
+        
+        /* 页面加载动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        
+        /* 多语言内容隐藏 */
+        [data-lang]:not([data-lang="en"]) {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-neutral text-gray-800 antialiased">
+    <!-- 顶部导航栏 -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-primary text-shadow">
+                Homelight <span class="text-accent">Jewelry</span>
+            </h1>
+            
+            <!-- 语言选择器 -->
+            <div class="language-selector">
+                <select id="language-select">
+                    <option value="en">English</option>
+                    <option value="de">Deutsch</option>
+                    <option value="fr">Fran?ais</option>
+                    <option value="es">Espa?ol</option>
+                    <option value="it">Italiano</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- 品牌介绍部分 -->
+        <section class="py-12 md:py-20 animate-fade-in">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-[clamp(1.25rem,2.5vw,2rem)] font-semibold mb-6 text-accent">
+                    <span data-lang="en">Elegance in Every Detail</span>
+                    <span data-lang="de">Elegance in jedem Detail</span>
+                    <span data-lang="fr">élégance dans chaque détail</span>
+                    <span data-lang="es">Elegancia en cada detalle</span>
+                    <span data-lang="it">Eleganza in ogni dettaglio</span>
+                </h2>
+                <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-8">
+                    <span data-lang="en">
+                        Homelight Jewelry represents the perfect fusion of timeless craftsmanship and contemporary design. 
+                        Each piece is meticulously created to bring warmth and elegance to your home and personal style, 
+                        reflecting the rich traditions of European artistry with a modern touch.
+                    </span>
+                    <span data-lang="de">
+                        Homelight Jewelry verk?rpert die perfekte Verschmelzung aus zeitloser Handwerkskunst und modernem Design. 
+                        Jedes Stück wird mit gr??ter Sorgfalt geschaffen, um W?rme und Eleganz in Ihr Zuhause und Ihren pers?nlichen Stil zu bringen, 
+                        und spiegelt die reichen Traditionen der europ?ischen Kunst mit einem modernen Touch wider.
+                    </span>
+                    <span data-lang="fr">
+                        Homelight Jewelry représente la fusion parfaite entre artisanat intemporel et design contemporain. 
+                        Chaque pièce est méticuleusement créée pour apporter chaleur et élégance à votre maison et à votre style personnel, 
+                        reflétant les riches traditions de l'artisanat européen avec une touche moderne.
+                    </span>
+                    <span data-lang="es">
+                        Homelight Jewelry representa la perfecta fusión de artesanía atemporal y dise?o contemporáneo. 
+                        Cada pieza se crea meticulosamente para aportar calidez y elegancia a tu hogar y tu estilo personal, 
+                        reflejando las ricas tradiciones de la artesanía europea con un toque moderno.
+                    </span>
+                    <span data-lang="it">
+                        Homelight Jewelry rappresenta la perfetta fusione di artigianalità senza tempo e design contemporaneo. 
+                        Ogni pezzo è creato meticolosamente per portare calore ed eleganza nella tua casa e nel tuo stile personale, 
+                        riflettendo le ricche tradizioni dell'artigianato europeo con un toque moderno.
+                    </span>
+                </p>
+                <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+            </div>
+        </section>
+
+        <!-- 链接入口 -->
+        <section class="py-10 md:py-16 animate-fade-in delay-100">
+            <h2 class="text-[clamp(1.1rem,2vw,1.5rem)] font-medium text-center mb-12 text-gray-700">
+                <span data-lang="en">Connect With Us</span>
+                <span data-lang="de">Verbinden Sie sich mit uns</span>
+                <span data-lang="fr">Connectez-vous avec nous</span>
+                <span data-lang="es">Conéctate con nosotros</span>
+                <span data-lang="it">Collegati con noi</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <!-- 独立站入口 -->
+                <a href="https://toolhomeeu.com/" target="_blank" rel="noopener noreferrer" class="social-btn bg-white rounded-lg shadow-md p-8 text-center flex flex-col items-center justify-center btn-hover group">
+                    <div class="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                        <i class="fa fa-globe text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="font-medium text-gray-800 text-lg">
+                        <span data-lang="en">Official Store</span>
+                        <span data-lang="de">Offizieller Store</span>
+                        <span data-lang="fr">Boutique officielle</span>
+                        <span data-lang="es">Tienda oficial</span>
+                        <span data-lang="it">Negozio ufficiale</span>
+                    </h3>
+                </a>
+                
+                <!-- WhatsApp入口 -->
+                <a href="#" target="_blank" rel="noopener noreferrer" class="social-btn bg-white rounded-lg shadow-md p-8 text-center flex flex-col items-center justify-center btn-hover group">
+                    <div class="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                        <i class="fa fa-whatsapp text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="font-medium text-gray-800 text-lg">WhatsApp</h3>
+                </a>
+                
+                <!-- 联系我们 -->
+                <a href="#contact" class="social-btn bg-white rounded-lg shadow-md p-8 text-center flex flex-col items-center justify-center btn-hover group">
+                    <div class="w-20 h-20 rounded-full bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
+                        <i class="fa fa-envelope text-3xl text-accent"></i>
+                    </div>
+                    <h3 class="font-medium text-gray-800 text-lg">
+                        <span data-lang="en">Contact Us</span>
+                        <span data-lang="de">Kontaktieren Sie uns</span>
+                        <span data-lang="fr">Contactez-nous</span>
+                        <span data-lang="es">Contáctanos</span>
+                        <span data-lang="it">Contattaci</span>
+                    </h3>
+                </a>
+            </div>
+        </section>
+        
+        <!-- 装饰分隔线 -->
+        <div class="flex items-center justify-center my-12 animate-fade-in delay-200">
+            <div class="h-px bg-gray-300 w-1/4"></div>
+            <div class="mx-4 text-primary">
+                <i class="fa fa-diamond"></i>
+            </div>
+            <div class="h-px bg-gray-300 w-1/4"></div>
+        </div>
+        
+        <!-- 联系我们部分 -->
+        <section id="contact" class="py-10 md:py-16 animate-fade-in delay-400">
+            <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-sm p-8 md:p-10">
+                <h2 class="text-[clamp(1.1rem,2vw,1.5rem)] font-medium text-center mb-8 text-gray-700">
+                    <span data-lang="en">Get In Touch</span>
+                    <span data-lang="de">Kontaktieren Sie uns</span>
+                    <span data-lang="fr">Contactez-nous</span>
+                    <span data-lang="es">Póngase en contacto</span>
+                    <span data-lang="it">Entra in contatto</span>
+                </h2>
+                
+                <form class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">
+                            <span data-lang="en">Your Name</span>
+                            <span data-lang="de">Ihr Name</span>
+                            <span data-lang="fr">Votre nom</span>
+                            <span data-lang="es">Tu nombre</span>
+                            <span data-lang="it">Il tuo nome</span>
+                        </label>
+                        <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" placeholder="John Doe">
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+                            <span data-lang="en">Email Address</span>
+                            <span data-lang="de">E-Mail-Adresse</span>
+                            <span data-lang="fr">Adresse e-mail</span>
+                            <span data-lang="es">Dirección de correo electrónico</span>
+                            <span data-lang="it">Indirizzo email</span>
+                        </label>
+                        <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" placeholder="john@example.com">
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">
+                            <span data-lang="en">Your Message</span>
+                            <span data-lang="de">Ihre Nachricht</span>
+                            <span data-lang="fr">Votre message</span>
+                            <span data-lang="es">Tu mensaje</span>
+                            <span data-lang="it">Il tuo messaggio</span>
+                        </label>
+                        <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" placeholder="How can we help you?"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-lg transition-colors shadow-md hover:shadow-lg">
+                        <span data-lang="en">Send Message</span>
+                        <span data-lang="de">Nachricht senden</span>
+                        <span data-lang="fr">Envoyer le message</span>
+                        <span data-lang="es">Enviar mensaje</span>
+                        <span data-lang="it">Invia messaggio</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-50 py-10 mt-16 animate-fade-in delay-500">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="text-gray-600 mb-6">
+                    <span data-lang="en">
+                        Homelight Jewelry - Crafting elegance for your everyday moments. 
+                        Each piece tells a story of craftsmanship, tradition, and timeless beauty.
+                    </span>
+                    <span data-lang="de">
+                        Homelight Jewelry - Eleganz für Ihre allt?glichen Momente schaffen. 
+                        Jedes Stück erz?hlt eine Geschichte von Handwerkskunst, Tradition und zeitloser Sch?nheit.
+                    </span>
+                    <span data-lang="fr">
+                        Homelight Jewelry - Création d'élégance pour vos moments quotidiens. 
+                        Chaque pièce raconte une histoire d'artisanat, de tradition et de beauté intemporelle.
+                    </span>
+                    <span data-lang="es">
+                        Homelight Jewelry - Creando elegancia para tus momentos cotidianos. 
+                        Cada pieza cuenta una historia de artesanía, tradición y belleza atemporal.
+                    </span>
+                    <span data-lang="it">
+                        Homelight Jewelry - Creando eleganza per i tuoi momenti quotidiani. 
+                        Ogni pezzo racconta una storia di artigianalità, tradizione e bellezza senza tempo.
+                    </span>
+                </p>
+                <div class="text-sm text-gray-500">
+                    <span data-lang="en">? 2023 Homelight Jewelry. All rights reserved.</span>
+                    <span data-lang="de">? 2023 Homelight Jewelry. Alle Rechte vorbehalten.</span>
+                    <span data-lang="fr">? 2023 Homelight Jewelry. Tous droits réservés.</span>
+                    <span data-lang="es">? 2023 Homelight Jewelry. Todos los derechos reservados.</span>
+                    <span data-lang="it">? 2023 Homelight Jewelry. Tutti i diritti riservati.</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300">
+        <i class="fa fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // 语言切换功能
+        const languageSelect = document.getElementById('language-select');
+        
+        function changeLanguage(lang) {
+            // 隐藏所有语言内容
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                el.style.display = 'none';
+            });
+            
+            // 显示选中语言的内容
+            document.querySelectorAll(`[data-lang="${lang}"]`).forEach(el => {
+                // 对于块级元素使用block，行内元素使用inline
+                const displayType = window.getComputedStyle(el).display === 'block' ? 'block' : 'inline';
+                el.style.display = displayType;
+            });
+            
+            // 保存用户选择的语言
+            localStorage.setItem('preferredLanguage', lang);
+        }
+        
+        // 监听语言选择变化
+        languageSelect.addEventListener('change', function() {
+            changeLanguage(this.value);
+        });
+        
+        // 页面加载时检查用户是否有偏好语言
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('preferredLanguage');
+            if (savedLang) {
+                languageSelect.value = savedLang;
+                changeLanguage(savedLang);
+            }
+        });
+        
+        // 返回顶部按钮功能
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+
+
+</body></html>
